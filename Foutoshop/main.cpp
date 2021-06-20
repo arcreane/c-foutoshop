@@ -6,16 +6,29 @@
 using namespace cv;
 using namespace std;
 
-/////////////// Basic Functions //////////////////////
-
-int main() {
+void resize_and_crop(String path)
+{
     
-    //Récupération de l'image dans le dossier
-    string path = "Resources/test.png";
+    //--- TRANSFORMATION DE L'IMAGE POUR LA RÉDUIRE ET LA REDIMENSIONNER --
+
     Mat img = imread(path);
-    
+    Mat imgResize, imgCrop;
 
-    //--- TRANSFORMATIONS DE L'IMAGE AVEC FILTRES --
+    //cout << img.size() << endl;
+    resize(img, imgResize, Size(),0.5,0.5);
+
+    Rect roi(200, 100, 300, 300);
+    imgCrop = img(roi);
+
+//    imshow("Image", img);
+    imshow("Image Resize", imgResize);
+    imshow("Image Crop", imgCrop);
+}
+
+void transform_and_filter(String path)
+{
+    //--- TRANSFORMATION DE L'IMAGE AVEC FILTRES --
+    Mat img = imread(path);
     
     //Création des différentes images
     Mat imgGray, imgBlur, imgCanny, imgDilate, imgErode;
@@ -43,5 +56,17 @@ int main() {
     imshow("Image Canny", imgCanny);
     imshow("Image Dilation", imgDilate);
     imshow("Image Erode", imgErode);
+}
+
+/////////////// Basic Functions //////////////////////
+
+int main()
+{
+    //Récupération de l'image dans le dossier
+    string path = "Resources/test.png";
+    Mat img = imread(path);
+    
+    transform_and_filter(path);
+    resize_and_crop(path);
     waitKey(0);
 }
