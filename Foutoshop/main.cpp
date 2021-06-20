@@ -28,6 +28,7 @@ void resize_and_crop(String path)
 void transform_and_filter(String path)
 {
     //--- TRANSFORMATION DE L'IMAGE AVEC FILTRES --
+    
     Mat img = imread(path);
     
     //Création des différentes images
@@ -58,6 +59,28 @@ void transform_and_filter(String path)
     imshow("Image Erode", imgErode);
 }
 
+void draw_and_text(String path)
+{
+    //--- TRANSFORMATION DE L'IMAGE AVEC TEXT ET FORME --
+    
+    Mat img = imread(path);
+
+    // Faire un cercle
+    circle(img, Point(256, 256), 155, Scalar(52, 52, 52),FILLED);
+    
+    // Faire un rectangle
+    rectangle(img, Point(130, 226), Point(382, 286), Scalar(255, 255, 255), FILLED);
+    
+    // Faire une ligne
+    line(img, Point(130, 296), Point(382, 296), Scalar(255, 255, 255), 2);
+
+    
+    // Mettre du texte
+    putText(img, "Foutoshop", Point(200, 262), FONT_HERSHEY_DUPLEX, 0.75, Scalar(52, 52, 52),2);
+
+    imshow("Image", img);
+}
+
 /////////////// Basic Functions //////////////////////
 
 int main()
@@ -66,7 +89,9 @@ int main()
     string path = "Resources/test.png";
     Mat img = imread(path);
     
-    transform_and_filter(path);
-    resize_and_crop(path);
+
+//    transform_and_filter(path);
+//    resize_and_crop(path);
+    draw_and_text(path);
     waitKey(0);
 }
