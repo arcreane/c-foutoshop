@@ -81,6 +81,21 @@ void draw_and_text(String path)
     imshow("Image", img);
 }
 
+void rotate(String path){
+    
+    //--- FAIRE UNE ROTATION DE L'IMAGE --
+    
+    Mat img = imread(path);
+    
+    // Changer l'angle de rotation
+    double angle = 90;
+    
+    Point2f pt(img.cols/2., img.rows/2.);
+    Mat r = getRotationMatrix2D(pt, angle, 1.0);
+    warpAffine(img, img, r, Size(img.cols, img.rows));
+    
+    imshow("Image rotate", img);
+}
 /////////////// Basic Functions //////////////////////
 
 int main()
@@ -92,6 +107,7 @@ int main()
 
 //    transform_and_filter(path);
 //    resize_and_crop(path);
-    draw_and_text(path);
+//    draw_and_text(path);
+    rotate(path);
     waitKey(0);
 }
