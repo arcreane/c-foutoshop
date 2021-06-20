@@ -101,13 +101,13 @@ void rotate(String path){
 int main()
 {
     //Récupération de l'image dans le dossier
-    string path = "Resources/test.png";
+    string path = "Resources/ambiance.jpg";
     Mat img = imread(path);
     
 
-//    transform_and_filter(path);
-//    resize_and_crop(path);
-//    draw_and_text(path);
+    transform_and_filter(path);
+    resize_and_crop(path);
+    draw_and_text(path);
     rotate(path);
     waitKey(0);
 }
