@@ -2,6 +2,8 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <iostream>
+#include "functions.h"
+
 
 using namespace cv;
 using namespace std;
@@ -109,7 +111,7 @@ Mat draw_and_text(Mat &imgTransform)
     return (imgTransform);
 }
 
-void rotate(Mat &imgTransform){
+Mat rotate(Mat &imgTransform){
     
     cout << "Merci de saisir l'inclinaison de rotation ? " << endl;
     int whatAngle;
@@ -118,6 +120,8 @@ void rotate(Mat &imgTransform){
     Point2f pt(imgTransform.cols/2., imgTransform.rows/2.);
     Mat r = getRotationMatrix2D(pt, whatAngle, 1.0);
     warpAffine(imgTransform, imgTransform, r, Size(imgTransform.cols, imgTransform.rows));
+    
+    return (imgTransform);
 }
 /////////////// Basic Functions //////////////////////
 
@@ -126,12 +130,12 @@ int main()
     cout << "Bienvenue sur le logiciel Foutoshop, un logiciel pour vous permettre d'éditer vos images." << endl;
     
     //Récupération de l'image dans le dossier (à modifier)
-    string path = "Resources/test.CR2";
+    string path = "Resources/ambiance.jpg";
     Mat img = imread(path);
     
     if (img.empty())
     {
-        cout << "Impossible d'ouvrir l'imagine, merci de vérifier le chemin" << endl;
+        cout << "Impossible d'ouvrir l'image, merci de vérifier le chemin" << endl;
         cin.get();
         return -1;
     }
@@ -181,6 +185,9 @@ int main()
     }
     
     imshow("Image édité", imgTransform);
+    
+    // Enregistrer l'image
+    imwrite("Resources/edit.jpg", imgTransform);
 
     waitKey(0);
 }
