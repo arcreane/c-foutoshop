@@ -1,5 +1,5 @@
 //
-//  functions.cpp
+//  effect.cpp
 //  Foutoshop
 //
 //  Created by Noémie Rochard on 22/06/2021.

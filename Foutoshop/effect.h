@@ -1,5 +1,5 @@
 	//
-//  functions.h
+//  effect.h
 //  Foutoshop
 //
 //  Created by Noémie Rochard on 22/06/2021.
