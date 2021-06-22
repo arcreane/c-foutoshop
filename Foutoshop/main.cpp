@@ -6,24 +6,28 @@
 using namespace cv;
 using namespace std;
 
-void resize_and_crop(Mat img)
+Mat crop(Mat &imgTransform)
 {
     
     //--- TRANSFORMATION DE L'IMAGE POUR LA RÉDUIRE ET LA REDIMENSIONNER --
+    
+    Mat imgCrop;
 
-    Mat imgResize, imgCrop;
+    // Réduire la taille de l'image
+    //    resize(imgTransform, imgTransform, Size(),0.5,0.5);
 
-    //cout << img.size() << endl;
-    resize(img, imgResize, Size(),0.5,0.5);
+    Rect roi(500, 300, 300, 300);
+    imgCrop = imgTransform(roi);
 
-    Rect roi(200, 100, 300, 300);
-    imgCrop = img(roi);
-
-    imshow("Image Resize", imgResize);
-    imshow("Image Crop", imgCrop);
+//    imshow("Image Resize", imgResize);
+//    imshow("Image Crop", imgCrop);
+    
+    imgTransform = imgCrop;
+    
+    return (imgTransform);
 }
 
-Mat transform_and_filter(Mat img, Mat imgTransform)
+Mat transform_and_filter(Mat img, Mat &imgTransform)
 {
     //--- TRANSFORMATION DE L'IMAGE AVEC FILTRES --
 
@@ -140,11 +144,32 @@ int main()
     cin >> isTransform;
     if (isTransform == "y")
     {
-        imgTransform= transform_and_filter(img, imgTransform);
-        imshow("Image édité", imgTransform);
+        transform_and_filter(img, imgTransform);
+
     }
-//    resize_and_crop(img);
-//    draw_and_text(img);
+    
+    // Fonction pour recadrer l'image
+    cout << "Souhaitez-vous recadrer votre image (y/n) ? " << endl;
+    String isResize;
+    cin >> isResize;
+    if (isResize == "y")
+    {
+        crop(imgTransform);
+    }
+    
+    // Fonction pour ajouter du texte et des formes
+    cout << "Souhaitez-vous ajouter du texte et des formes (y/n) ? " << endl;
+    String isDraw;
+    cin >> isDraw;
+    if (isDraw == "y")
+    {
+        draw_and_text(imgTransform);
+    }
+    
+
+    
+    imshow("Image édité", imgTransform);
+
 //    rotate(img);
     waitKey(0);
 }
