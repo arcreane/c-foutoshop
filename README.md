@@ -7,6 +7,11 @@ Foutoshop est une application console qui a pour ambition de reprendre les princ
 
 C'est un projet en C++ qui exploite la librarie OpenCV.
 
+<p align="center">
+  <img width="800" height="550" src="https://github.com/arcreane/c-foutoshop/blob/master/Foutoshop/Resources/meme.png">
+</p>
+
+
 ## Support 
 
 https://docs.google.com/presentation/d/1C2fjXv9JBdqXNXGwBO9cipHie7oORfBVMtYI492bpog/edit?usp=sharing
