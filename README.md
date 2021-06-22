@@ -3,7 +3,15 @@ c-foutoshop created by GitHub Classroom
 
 ## Présentation
 
-Foutoshop est une application console qui a pour ambition de reprendre les principales fonctionnalités de Photoshop,
+Foutoshop est une application console qui a pour ambition de reprendre les principales fonctionnalités de Photoshop.
+
+- Modification de l’exposition
+- Modification du contraste
+- Rotation de l’image
+- Ajout de filtres de couleurs
+- Recadrage de l’image
+- Enregistrement de l’image
+
 
 C'est un projet en C++ qui exploite la librarie OpenCV.
 
