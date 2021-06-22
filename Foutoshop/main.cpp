@@ -85,7 +85,7 @@ Mat draw_and_text(Mat &imgTransform)
     cin >> isCircle;
     if (isCircle == "y")
     {
-        circle(imgTransform, Point(256, 256), 155, Scalar(52, 52, 52),FILLED);
+        circle(imgTransform, Point(1000, 1500), 400, Scalar(52, 52, 52),FILLED);
     }
     
     // Faire un rectangle
@@ -109,16 +109,15 @@ Mat draw_and_text(Mat &imgTransform)
     return (imgTransform);
 }
 
-void rotate(Mat img){
+void rotate(Mat &imgTransform){
     
-    // Changer l'angle de rotation
-    double angle = 90;
+    cout << "Merci de saisir l'inclinaison de rotation ? " << endl;
+    int whatAngle;
+    cin >> whatAngle;
     
-    Point2f pt(img.cols/2., img.rows/2.);
-    Mat r = getRotationMatrix2D(pt, angle, 1.0);
-    warpAffine(img, img, r, Size(img.cols, img.rows));
-    
-    imshow("Image rotate", img);
+    Point2f pt(imgTransform.cols/2., imgTransform.rows/2.);
+    Mat r = getRotationMatrix2D(pt, whatAngle, 1.0);
+    warpAffine(imgTransform, imgTransform, r, Size(imgTransform.cols, imgTransform.rows));
 }
 /////////////// Basic Functions //////////////////////
 
@@ -127,7 +126,7 @@ int main()
     cout << "Bienvenue sur le logiciel Foutoshop, un logiciel pour vous permettre d'éditer vos images." << endl;
     
     //Récupération de l'image dans le dossier (à modifier)
-    string path = "Resources/ambiance.jpg";
+    string path = "Resources/test.CR2";
     Mat img = imread(path);
     
     if (img.empty())
@@ -178,7 +177,7 @@ int main()
     cin >> isRotate;
     if (isRotate == "y")
     {
-            rotate(img);
+        rotate(imgTransform);
     }
     
     imshow("Image édité", imgTransform);
