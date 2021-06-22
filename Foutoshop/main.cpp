@@ -8,9 +8,7 @@ using namespace std;
 
 Mat crop(Mat &imgTransform)
 {
-    
-    //--- TRANSFORMATION DE L'IMAGE POUR LA RÉDUIRE ET LA REDIMENSIONNER --
-    
+
     Mat imgCrop;
 
     // Réduire la taille de l'image
@@ -18,9 +16,6 @@ Mat crop(Mat &imgTransform)
 
     Rect roi(500, 300, 300, 300);
     imgCrop = imgTransform(roi);
-
-//    imshow("Image Resize", imgResize);
-//    imshow("Image Crop", imgCrop);
     
     imgTransform = imgCrop;
     
@@ -29,7 +24,6 @@ Mat crop(Mat &imgTransform)
 
 Mat transform_and_filter(Mat img, Mat &imgTransform)
 {
-    //--- TRANSFORMATION DE L'IMAGE AVEC FILTRES --
 
     // Noir et blanc
     cout << "Souhaitez-vous mettre l'image en noir & blanc (y/n) ? " << endl;
@@ -57,6 +51,7 @@ Mat transform_and_filter(Mat img, Mat &imgTransform)
         }
     }
 
+    // Flou
     cout << "Souhaitez-vous mettre l'image en flou (y/n) ? " << endl;
     String isBlur;
     cin >> isBlur;
@@ -82,29 +77,39 @@ Mat transform_and_filter(Mat img, Mat &imgTransform)
     return (imgTransform);
 }
 
-void draw_and_text(Mat img)
+Mat draw_and_text(Mat &imgTransform)
 {
-    //--- TRANSFORMATION DE L'IMAGE AVEC TEXT ET FORME --
 
-    // Faire un cercle
-    circle(img, Point(256, 256), 155, Scalar(52, 52, 52),FILLED);
+    cout << "Souhaitez-vous dessiner un cercle sur l'image (y/n) ? " << endl;
+    String isCircle;
+    cin >> isCircle;
+    if (isCircle == "y")
+    {
+        circle(imgTransform, Point(256, 256), 155, Scalar(52, 52, 52),FILLED);
+    }
     
     // Faire un rectangle
-    rectangle(img, Point(130, 226), Point(382, 286), Scalar(255, 255, 255), FILLED);
+    // rectangle(img, Point(130, 226), Point(382, 286), Scalar(255, 255, 255), FILLED);
     
     // Faire une ligne
-    line(img, Point(130, 296), Point(382, 296), Scalar(255, 255, 255), 2);
+    //  line(img, Point(130, 296), Point(382, 296), Scalar(255, 255, 255), 2);
 
     
-    // Mettre du texte
-    putText(img, "Foutoshop", Point(200, 262), FONT_HERSHEY_DUPLEX, 0.75, Scalar(52, 52, 52),2);
+    cout << "Souhaitez-vous ajouter du texte (y/n) ? " << endl;
+    String isText;
+    cin >> isText;
+    if (isText == "y")
+    {
+        cout << "Quel texte souhaitez-vous mettre (y/n) ? " << endl;
+        String whatText;
+        cin >> whatText;
+        putText(imgTransform, whatText, Point(200, 262), FONT_HERSHEY_DUPLEX, 0.75, Scalar(52, 52, 52),2);
+    }
 
-    imshow("Image with draw and text", img);
+    return (imgTransform);
 }
 
 void rotate(Mat img){
-    
-    //--- FAIRE UNE ROTATION DE L'IMAGE --
     
     // Changer l'angle de rotation
     double angle = 90;
@@ -166,10 +171,17 @@ int main()
         draw_and_text(imgTransform);
     }
     
-
+    
+    // Fonction pour retourner l'image
+    cout << "Souhaitez-vous effectuer une rotation de l'image (y/n) ? " << endl;
+    String isRotate;
+    cin >> isRotate;
+    if (isRotate == "y")
+    {
+            rotate(img);
+    }
     
     imshow("Image édité", imgTransform);
 
-//    rotate(img);
     waitKey(0);
 }
