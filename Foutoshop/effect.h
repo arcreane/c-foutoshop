@@ -20,6 +20,7 @@ class Effect
     Mat transform_and_filter(Mat img, Mat &imgTransform);
     Mat draw_and_text(Mat &imgTransform);
     Mat rotate(Mat &imgTransform);
+    Mat brigthness(Mat &imgTransform);
 };
 
 

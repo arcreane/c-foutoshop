@@ -10,6 +10,13 @@
 
 using namespace std;
 
+Mat Effect::brigthness(Mat &imgTransform){
+    cout << "test" << endl;
+    Mat img_higher_contrast;
+    imgTransform.convertTo(img_higher_contrast, -1, 2, 0);
+    return (imgTransform);
+}
+
 Mat Effect::crop(Mat &imgTransform)
 {	
 

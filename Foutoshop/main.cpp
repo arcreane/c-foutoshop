@@ -34,6 +34,8 @@ int main()
     
     Mat imgTransform;
     
+ 
+    
     // Fonction pour l'ajout de filtres et de flou
     cout << "Souhaitez-vous ajouter un filtre sur votre image (y/n) ? " << endl;
     String isTransform;
@@ -43,6 +45,15 @@ int main()
         applyImg.transform_and_filter(img, imgTransform);
 
     }
+    
+    // Fonction pour modifier la luminosité
+//    cout << "Souhaitez-vous modifier la luminosité de l'image (y/n) ? " << endl;
+//    String isBright;
+//    cin >> isBright;
+//    if (isBright == "y")
+//    {
+//        applyImg.brigthness(imgTransform);
+//    }
     
     // Fonction pour recadrer l'image
     cout << "Souhaitez-vous recadrer votre image (y/n) ? " << endl;
